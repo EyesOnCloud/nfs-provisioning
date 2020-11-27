@@ -3,10 +3,6 @@ kind: Pod
 metadata:
   name: busybox
 spec:
-  volumes:
-  - name: host-volume
-    persistentVolumeClaim:
-      claimName: pvc1
   containers:
   - image: busybox
     name: busybox
@@ -15,3 +11,7 @@ spec:
     volumeMounts:
     - name: host-volume
       mountPath: /mydata
+  volumes:
+  - name: host-volume
+    persistentVolumeClaim:
+      claimName: pvc1
