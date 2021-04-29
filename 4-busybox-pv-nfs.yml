@@ -1,17 +1,15 @@
 apiVersion: v1
 kind: Pod
 metadata:
-  name: busybox
+  name: web-server
 spec:
   containers:
-  - image: busybox
-    name: busybox
-    command: ["/bin/sh"]
-    args: ["-c", "sleep 600"]
+  - image: nginx
+    name: web-container
     volumeMounts:
-    - name: host-volume
-      mountPath: /mydata
+    - name: nfs-volume
+      mountPath: /usr/share/nginx/html
   volumes:
-  - name: host-volume
+  - name: nfs-volume
     persistentVolumeClaim:
       claimName: pvc1
